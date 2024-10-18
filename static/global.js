@@ -15,31 +15,6 @@ let pages = [
 let nav = document.createElement('nav');
 document.body.prepend(nav);
 
-for (let p of pages) {
-    let url = p.url;
-    let title = p.title;
-    let a = document.createElement('a');
-    a.href = url;
-    a.textContent = title;
-    if (p.target) {
-        a.setAttribute('target', p.target); 
-    }
-    nav.append(a);
-    const ARE_WE_HOME = document.documentElement.classList.contains('home');
-
-
-    if (!ARE_WE_HOME && !url.startsWith('http')) {
-        const depth = location.pathname.split('/').length - 2; 
-        url = '../'.repeat(depth) + url;
-        a.href = url;
-        //used chatGPT for debugging here because of errors continuing to pop up
-    }
-
-    if (a.host === location.host && a.pathname === location.pathname) {
-        a.classList.add('current');
-    }
-}
-
 document.body.insertAdjacentHTML(
     'afterbegin',
     `
@@ -91,9 +66,3 @@ form?.addEventListener('submit', function (event) {
     console.log('Final URL:', url);
     location.href = url;
 });
-
-// let currentLink = navLinks.find(
-//     (a) => a.host === location.host && a.pathname === location.pathname,
-//   );
-
-// currentLink?.classList.add('current');
