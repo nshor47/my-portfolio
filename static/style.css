@@ -76,7 +76,7 @@ button {
   grid-column: 1 / -1;
 }
 
-.projects{
+/* .projects{
   display:grid;
   grid-template-columns: repeat(auto-fill, minmax(26em, 1fr));
   gap: 1em;
@@ -94,7 +94,7 @@ button {
 
 .projects article h2 {
   margin: 0; 
-}
+} */
 
 h1 {
   font-size: calc(300%);
