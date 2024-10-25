@@ -4,16 +4,16 @@ function $$(selector, context = document) {
   return Array.from(context.querySelectorAll(selector));
 }
 
-let pages = [
-    {url: '.', title:'Home' },
-    {url: 'projects', title: 'Projects'},
-    {url: 'contact', title:'Contact' },
-    {url: 'resume', title: 'Resume'},
-    {url: 'https://github.com/nshor47', title:'Github', target: '_blank'}
-]
+// let pages = [
+//     {url: '.', title:'Home' },
+//     {url: 'projects', title: 'Projects'},
+//     {url: 'contact', title:'Contact' },
+//     {url: 'resume', title: 'Resume'},
+//     {url: 'https://github.com/nshor47', title:'Github', target: '_blank'}
+// ]
 
-let nav = document.createElement('nav');
-document.body.prepend(nav);
+// let nav = document.createElement('nav');
+// document.body.prepend(nav);
 
 // for (let p of pages) {
 //     let url = p.url;
