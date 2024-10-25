@@ -33,7 +33,6 @@ nav ul li {
 
 nav {
   display: flex ;
-  margin-bottom: 2ch;
   border-bottom: 1px solid oklch(80% 3% 200);
   border-bottom-color: var(--border-color);
   background-color: color-mix(in oklch, var(--color-accent), canvas 95%);
