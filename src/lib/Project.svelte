@@ -13,7 +13,7 @@
 
 <style>
     .projects{
-        display:grid;
+        display:grid; */
         grid-template-columns: repeat(auto-fill, minmax(26em, 1fr));
         gap: 1em;
     }
