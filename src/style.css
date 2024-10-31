@@ -175,7 +175,7 @@ a:hover {
 }
 /* Used chatgpt to come up with new ideas for page customization such as text-shadow, hover features, and transition effects */
 
-.color-scheme {
+/* .color-scheme {
   position: absolute;
   top: 1rem;
   right: 1rem;
@@ -195,4 +195,4 @@ a:hover {
 
 body[data-theme='dark'] {
   background-color: var(--color-bg);
-}
+} */

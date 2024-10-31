@@ -40,35 +40,35 @@ function $$(selector, context = document) {
 //     }
 // }
 
-document.body.insertAdjacentHTML(
-    'afterbegin',
-    `
-      <label class="color-scheme">
-          Theme:
-          <select id='color-scheme-select'>
-                <option value="light dark">Automatic</option>
-                <option value="light">Light</option>
-                <option value="dark">Dark</option>
-          </select>
-      </label>`,
-);
-const select = document.querySelector('#color-scheme-select');
+// document.body.insertAdjacentHTML(
+//     'afterbegin',
+//     `
+//       <label class="color-scheme">
+//           Theme:
+//           <select id='color-scheme-select'>
+//                 <option value="light dark">Automatic</option>
+//                 <option value="light">Light</option>
+//                 <option value="dark">Dark</option>
+//           </select>
+//       </label>`,
+// );
+// const select = document.querySelector('#color-scheme-select');
 
-if ("colorScheme" in localStorage) {
-    const storedScheme = localStorage.colorScheme;
-    document.documentElement.style.setProperty('color-scheme', storedScheme);
-    select.value = storedScheme;
-} else {
-    localStorage.colorScheme = 'light';
-    select.value = 'light';
-}
+// if ("colorScheme" in localStorage) {
+//     const storedScheme = localStorage.colorScheme;
+//     document.documentElement.style.setProperty('color-scheme', storedScheme);
+//     select.value = storedScheme;
+// } else {
+//     localStorage.colorScheme = 'light';
+//     select.value = 'light';
+// }
 
-select.addEventListener('input', function (event) {
-    console.log('color scheme changed to', event.target.value);
-    document.documentElement.style.setProperty('color-scheme', event.target.value);
-    localStorage.colorScheme = event.target.value
+// select.addEventListener('input', function (event) {
+//     console.log('color scheme changed to', event.target.value);
+//     document.documentElement.style.setProperty('color-scheme', event.target.value);
+//     localStorage.colorScheme = event.target.value
 
-});
+// });
 
 
 const form = document.querySelector('form');
