@@ -2,19 +2,19 @@
     {
         "title": "UCSD Capstone Project: Generative AI for Good",
         "year": "2024",
-        "image": "/images/DSC_capstone.png",
+        "image": "images/DSC_capstone.png",
         "description": "Data Science final project working under Dr . Ali Arsanjani, Director of Googles AI program. Working towards combining Predictive and Generative AI methods to analyze news articles and return truthfulness scores to better inform people of the reliability of news."
     },
     {
         "title": "How Does Monthly Rainfall in San Diego Affect Traffic Injury Counts?",
         "year": "2024",
-        "image": "/images/SD_rainfall.png",
+        "image": "images/SD_rainfall.png",
         "description": "Exploratory data visualization project to see how monthly rainfall levels in San Diego affect number of injuries from car related accidents in the year 2023. "
     },
     {
         "title": "How much has continental internet usage changed across the last two decades?",
         "year": "2024",
-        "image": "/images/Continental_Internet_usage.png",
+        "image": "images/Continental_Internet_usage.png",
         "description": "This exploratory visualization project took a deeper look into how internet usage has changed across different continents in the last two decades. "
     },
     {
