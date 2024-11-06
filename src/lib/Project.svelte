@@ -4,63 +4,9 @@
     import Pie from '$lib/Pie.svelte';
     import * as d3 from 'd3';
     import projects from '$lib/projects.json';
-
     let query = '';
-
-    let rolledData = d3.rollups(
-    projects,
-    (v) => v.length,
-    (d) => d.year,
-    );
-
-    let pieData = rolledData.map(([year, count]) => {
-    return { value: count, label: year };
-    });
-
-
-    let colors = d3.scaleOrdinal(d3.schemeTableau10);
-
-    let sliceGenerator = d3.pie().value((d) => d.value);    
-    let arcData = sliceGenerator(pieData);
-    let arcGenerator = d3.arc().innerRadius(0).outerRadius(50);  
-
-    let filteredProjects;
-    $: filteredProjects = projects.filter((project) => {
-        if (query) {
-            return project.title.toLowerCase().includes(query.toLowerCase());
-        }
-
-        return true;
-        });
-    $: filteredProjects = projects.filter((project) => {
-        let values = Object.values(project).join('\n').toLowerCase();
-        return values.includes(query.toLowerCase());
-        });
 </script>
 
-<input
-  type="search"
-  bind:value="{query}"
-  aria-label="Search projects"
-  placeholder="🔍 Search projects…"
-/>
-
-<div class="container">
-    <svg viewBox="-50 -50 100 100">
-        {#each arcData as arc, i}
-            <path d={arcGenerator(arc)} fill={colors(i)} />
-        {/each}
-    </svg>
-
-    <ul class="legend">
-        {#each pieData as d, index}
-            <li style="--color: { colors(index) }">
-                <span class="swatch"></span>
-                {d.label} <em>({d.value})</em>
-            </li>
-        {/each}
-    </ul>
-</div>
 
 <div class="projects">
     <article class="project">
@@ -128,36 +74,6 @@
 
     :root[data-theme='dark'] {
         --swatch-border-color: #fff; 
-    }
-    .legend {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
-        gap: 0em;
-        margin: 1em 0;
-        list-style: none;
-        padding: 10;
-        border: 1.2px solid var(--swatch-border-color);
-        flex:1;
-    }
-    .legend li {
-        display: flex;
-        align-items: center;
-        gap: 0.5em;
-    }
-    .swatch {
-        width: 1em;
-        height: 1em;
-        aspect-ratio: 1 / 1;
-        background-color: var(--color);
-        border-radius: 50%;
-        display: inline-block;
-        border: 1px solid #3f3e3e;
-    }
-    .container {
-        display: flex;
-        align-items: center;
-        gap: 1em;
-        flex-wrap: wrap;
     }
 </style>
 
