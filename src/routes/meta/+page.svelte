@@ -8,6 +8,9 @@
     let xScale, yScale;
     let xAxis, yAxis, yAxisGridlines;
     let cursor = { x: 0, y: 0 };
+    let rScale;
+    let svg;
+    let hoveredCommit = null;
 
     onMount(async () => {
         data = await d3.csv('loc.csv', (row) => ({
@@ -44,6 +47,10 @@
 
                 return ret;
             });
+
+            
+            commits = d3.sort(commits, (d) => -d.totalLines);
+
             numFiles = d3.groups(data, d => d.file).length;
 
             const fileLengths = d3.rollups(data, v => d3.max(v, d => d.line), d => d.file);
@@ -64,6 +71,11 @@
             yScale = d3.scaleLinear()
             .domain([0, 24])
             .range([usableArea.bottom, usableArea.top]);
+
+            const totalLinesExtent = d3.extent(commits, d => d.totalLines);
+            rScale = d3.scaleSqrt() 
+                .domain(totalLinesExtent)
+                .range([2, 30]); 
     });
     
 let width = 1000,
@@ -90,6 +102,10 @@ yScale = d3.scaleLinear()
       .domain([0, 24])
       .range([usableArea.bottom, usableArea.top]);
 
+function brushed(evt) {
+  console.log(evt);
+}
+
 $: {
     d3.select(xAxis).call(d3.axisBottom(xScale));
     d3.select(yAxis).call(d3.axisLeft(yScale));
@@ -99,10 +115,16 @@ $: {
     d3.select(yAxisGridlines).call(
         d3.axisLeft(yScale).tickFormat('').tickSize(-usableArea.width)
     );
+    d3.select(svg).call(d3.brush().on('start brush end', brushed));
+    d3.select(svg).selectAll('.dots, .overlay ~ *').raise();
 }
+
+
+
 let hoveredIndex = -1;
 
 $: hoveredCommit = commits[hoveredIndex] ?? hoveredCommit ?? {};
+
 
 </script>
 
@@ -124,6 +146,7 @@ $: hoveredCommit = commits[hoveredIndex] ?? hoveredCommit ?? {};
     
     <dt>Time of Day with Most Work</dt><dd>{maxPeriod}</dd>
 </dl>
+
 <dl
   id="commit-tooltip"
   class="tooltip"
@@ -144,27 +167,29 @@ $: hoveredCommit = commits[hoveredIndex] ?? hoveredCommit ?? {};
 
 <br>
 <h2>Commits by Time of Day</h2>
-<svg viewBox="0 0 {width} {height}">
+<svg bind:this={svg} viewBox="0 0 {width} {height}">
     <g transform="translate(0, {usableArea.bottom})" bind:this={xAxis} />
     <g transform="translate({usableArea.left}, 0)" bind:this={yAxis} />
     <g class="gridlines" transform="translate({usableArea.left}, 0)" bind:this={yAxisGridlines} />
     <g class="dots">
-        {#each commits as commit, index }
-        <circle
-          cx="{xScale(commit.datetime)}"
-          cy="{yScale(commit.hourFrac)}"
-          r="5"
-          fill="steelblue"
-          on:mouseenter={evt => {
-            hoveredIndex = index;
-            cursor = { x: evt.x, y: evt.y }; 
-          }}
-          on:mouseleave={evt => {
-            hoveredIndex = -1;
-            cursor = { x: -9999, y: -9999 };
-          }}/>
+        {#each commits as commit, index}
+            <circle
+              cx="{xScale(commit.datetime)}"
+              cy="{yScale(commit.hourFrac)}"
+              r="{rScale(commit.totalLines)}"
+              fill="steelblue"
+              fill-opacity="0.7"
+              on:mouseenter={evt => {
+                hoveredIndex = index;
+                cursor = { x: evt.x, y: evt.y };
+              }}
+              on:mouseleave={evt => {
+                hoveredIndex = -1;
+                cursor = { x: -9999, y: -9999 };
+              }}
+            />
         {/each}
-      </g>
+    </g>
 </svg>
 
 
