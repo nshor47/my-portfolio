@@ -7,8 +7,7 @@
     let numFiles, avgFileLength, avgLineLength, maxWorkDay, maxPeriod;
     let xScale, yScale;
     let xAxis, yAxis, yAxisGridlines;
-
-
+    let cursor = { x: 0, y: 0 };
 
     onMount(async () => {
         data = await d3.csv('loc.csv', (row) => ({
@@ -92,15 +91,18 @@ yScale = d3.scaleLinear()
       .range([usableArea.bottom, usableArea.top]);
 
 $: {
-    d3.select(xAxis).call(d3.axisBottom(xScale)),
+    d3.select(xAxis).call(d3.axisBottom(xScale));
     d3.select(yAxis).call(d3.axisLeft(yScale));
     d3.select(yAxis).call(
-    d3.axisLeft(yScale).tickFormat((d) => String(d % 24).padStart(2, '0') + ':00'),
+        d3.axisLeft(yScale).tickFormat((d) => String(d % 24).padStart(2, '0') + ':00')
+    );
     d3.select(yAxisGridlines).call(
-        d3.axisLeft(yScale).tickFormat('').tickSize(-usableArea.width),
-    )
-);
+        d3.axisLeft(yScale).tickFormat('').tickSize(-usableArea.width)
+    );
 }
+let hoveredIndex = -1;
+
+$: hoveredCommit = commits[hoveredIndex] ?? hoveredCommit ?? {};
 
 </script>
 
@@ -122,6 +124,23 @@ $: {
     
     <dt>Time of Day with Most Work</dt><dd>{maxPeriod}</dd>
 </dl>
+<dl
+  id="commit-tooltip"
+  class="tooltip"
+  hidden={hoveredIndex === -1} 
+  style="top: {cursor.y + 300}px; left: {cursor.x + 10}px;">
+
+  <dt>Commit:</dt>
+  <dd><a href="{hoveredCommit.url}" target="_blank">{ hoveredCommit.id }</a></dd>
+
+  <dt>Date:</dt><dd>{ hoveredCommit.datetime?.toLocaleString("en", {dateStyle: "full"}) }</dd>
+
+  <dt>Time:</dt><dd>{ hoveredCommit.datetime?.toLocaleString("en", { timeStyle: "short" }) }</dd>
+
+  <dt>Author:</dt><dd>{ hoveredCommit.author }</dd>
+
+  <dt>Lines Edited:</dt><dd>{ hoveredCommit.totalLines }</dd>
+</dl>
 
 <br>
 <h2>Commits by Time of Day</h2>
@@ -136,7 +155,14 @@ $: {
           cy="{yScale(commit.hourFrac)}"
           r="5"
           fill="steelblue"
-        />
+          on:mouseenter={evt => {
+            hoveredIndex = index;
+            cursor = { x: evt.x, y: evt.y }; 
+          }}
+          on:mouseleave={evt => {
+            hoveredIndex = -1;
+            cursor = { x: -9999, y: -9999 };
+          }}/>
         {/each}
       </g>
 </svg>
@@ -149,5 +175,37 @@ $: {
     }
     .gridlines {
       stroke-opacity: 0.2;
+    }
+
+
+    .tooltip {
+    position: absolute; 
+    background-color: rgba(218, 218, 218, 0.7); 
+    color: black;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    padding: 5px; 
+    pointer-events: none; 
+    transition: opacity 500ms ease, visibility 500ms ease; 
+    }
+
+    .tooltip[hidden] {
+    opacity: 0; 
+    visibility: hidden; 
+    }
+
+    .tooltip a{
+    color: black;
+    
+    }
+
+    circle {
+    transition: 200ms;
+    transform-origin: center;
+    transform-box: fill-box;
+    }
+
+    circle:hover {
+    transform: scale(1.5);
     }
 </style>
