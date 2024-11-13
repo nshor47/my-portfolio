@@ -173,6 +173,23 @@ a:hover {
   color: oklch(65% 50% 10);
   text-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  text-align: center;
+}
+
+.stats dt {
+  grid-row: 1; 
+  font-weight: bold;
+}
+
+.stats dd {
+  grid-row: 2; 
+  margin: 0;
+}
 /* Used chatgpt to come up with new ideas for page customization such as text-shadow, hover features, and transition effects */
 
 /* .color-scheme {
