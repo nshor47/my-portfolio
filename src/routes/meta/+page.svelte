@@ -1,6 +1,7 @@
 <script>
     import * as d3 from 'd3';
     import { onMount } from 'svelte';
+    import Pie from '$lib/Pie.svelte';
 
     let data = [];
     let commits = [];
@@ -11,6 +12,11 @@
     let rScale;
     let svg;
     let hoveredCommit = null;
+    let brushSelection = null;
+    const formatPercentage = d3.format(".1~%");
+
+    
+
 
     onMount(async () => {
         data = await d3.csv('loc.csv', (row) => ({
@@ -68,11 +74,13 @@
             .domain(d3.extent(commits, d => d.datetime))
             .range([usableArea.left, usableArea.right])
             .nice();
+
             yScale = d3.scaleLinear()
             .domain([0, 24])
             .range([usableArea.bottom, usableArea.top]);
 
             const totalLinesExtent = d3.extent(commits, d => d.totalLines);
+
             rScale = d3.scaleSqrt() 
                 .domain(totalLinesExtent)
                 .range([2, 30]); 
@@ -103,8 +111,21 @@ yScale = d3.scaleLinear()
       .range([usableArea.bottom, usableArea.top]);
 
 function brushed(evt) {
-  console.log(evt);
+    brushSelection = evt.selection;
+    //console.log("brushSelection:", brushSelection);
 }
+
+function isCommitSelected(commit) {
+    if (!brushSelection) {
+        return false;
+    }
+
+    let min = { x: brushSelection[0][0], y: brushSelection[0][1] };
+    let max = { x: brushSelection[1][0], y: brushSelection[1][1] };
+    let x = xScale(commit.datetime);
+    let y = yScale(commit.hourFrac);
+    return x >= min.x && x <= max.x && y >= min.y && y <= max.y;
+  }
 
 $: {
     d3.select(xAxis).call(d3.axisBottom(xScale));
@@ -124,9 +145,27 @@ $: {
 let hoveredIndex = -1;
 
 $: hoveredCommit = commits[hoveredIndex] ?? hoveredCommit ?? {};
+$: selectedCommits = brushSelection ? commits.filter(isCommitSelected) : [];
+$: hasSelection = brushSelection && selectedCommits.length > 0;
+$: selectedLines = hasSelection
+  ? data.filter(d => selectedCommits.some(commit => commit.id === d.commit))
+  : data;
 
+$: languageBreakdown = d3.rollup(
+    selectedLines,
+    (lines) => d3.sum(lines, (line) => line.length),
+    (line) => line.type,
+  );
 
+$: if (brushSelection) {
+    }
+$: totalLineLength = d3.sum(selectedLines, d => d.length);
+$: pieData = Array.from(languageBreakdown).map(([type, lines]) => ({
+  label: type,
+  value: lines,
+}));
 </script>
+
 
 
 <h1>Metadata</h1>
@@ -177,8 +216,7 @@ $: hoveredCommit = commits[hoveredIndex] ?? hoveredCommit ?? {};
               cx="{xScale(commit.datetime)}"
               cy="{yScale(commit.hourFrac)}"
               r="{rScale(commit.totalLines)}"
-              fill="steelblue"
-              fill-opacity="0.7"
+              class="{isCommitSelected(commit) ? 'selected' : ''}" 
               on:mouseenter={evt => {
                 hoveredIndex = index;
                 cursor = { x: evt.x, y: evt.y };
@@ -192,7 +230,18 @@ $: hoveredCommit = commits[hoveredIndex] ?? hoveredCommit ?? {};
     </g>
 </svg>
 
+<p>{hasSelection ? selectedCommits.length : "No"} commits selected</p>
+<h3>Language Breakdown</h3>
+<div class="language-breakdown">
+    {#each Array.from(languageBreakdown) as [language, lines]}
+      <div class="language-item">
+        <span class="language-name">{language.toUpperCase()}</span>
+        <span class="language-details">{lines} lines ({formatPercentage(lines / totalLineLength)})</span>
+      </div>
+    {/each}
+  </div>
 
+<Pie data={pieData} />
 
 <style>
     svg {
@@ -228,9 +277,43 @@ $: hoveredCommit = commits[hoveredIndex] ?? hoveredCommit ?? {};
     transition: 200ms;
     transform-origin: center;
     transform-box: fill-box;
+    fill:steelblue;
+    fill-opacity:0.7;
     }
 
     circle:hover {
     transform: scale(1.5);
+    }
+
+    circle.selected {
+    fill: orange;
+    fill-opacity: 1;
+    stroke: black;
+        stroke-width: 1.5px;
+        }
+    
+    .language-breakdown {
+    display: flex;
+    gap: 20px; 
+    justify-content: space-around; 
+    }
+
+    .language-item {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    color: #333;
+    }
+
+    .language-name {
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    color: #555; 
+    margin-bottom: 4px;
+    }
+
+    .language-details {
+    font-size: 16px;
+    font-weight: normal;
     }
 </style>
