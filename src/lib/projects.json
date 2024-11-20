@@ -3,7 +3,8 @@
         "title": "UCSD Capstone Project: Generative AI for Good",
         "year": "2024",
         "image": "images/DSC_capstone.png",
-        "description": "Data Science final project working under Dr . Ali Arsanjani, Director of Googles AI program. Working towards combining Predictive and Generative AI methods to analyze news articles and return truthfulness scores to better inform people of the reliability of news."
+        "description": "Data Science final project working under Dr . Ali Arsanjani, Director of Googles AI program. Working towards combining Predictive and Generative AI methods to analyze news articles and return truthfulness scores to better inform people of the reliability of news.",
+        "url": "https://hluu01.github.io/DSC180A_B09_2/"
     },
     {
         "title": "How Does Monthly Rainfall in San Diego Affect Traffic Injury Counts?",

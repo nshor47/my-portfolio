@@ -14,11 +14,13 @@
         <img src={data.image} alt={data.title}/>
         <div class="description"></div>
         <p>{data.description}</p>
-        <p>
-            <a href={data.url} target="_blank">
-                Visit the project website
-            </a>
-        </p>
+        {#if data.url}
+            <p>
+                <a href={data.url} target="_blank" rel="noopener noreferrer">
+                    Visit the project website
+                </a>
+            </p>
+        {/if}
         <p>c. {data.year}</p>
     </article>
 </div>
