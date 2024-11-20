@@ -14,6 +14,7 @@
         <img src={data.image} alt={data.title}/>
         <div class="description"></div>
         <p>{data.description}</p>
+        <p>{data.url}</p>
         <p>c. {data.year}</p>
     </article>
 </div>
