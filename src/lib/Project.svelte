@@ -14,7 +14,7 @@
         <img src={data.image} alt={data.title}/>
         <div class="description"></div>
         <p>{data.description}</p>
-        <p>{data.url}</p>
+        <a href={project.url} target="_blank" rel="noopener noreferrer">
         <p>c. {data.year}</p>
     </article>
 </div>
