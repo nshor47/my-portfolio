@@ -15,7 +15,7 @@
         <div class="description"></div>
         <p>{data.description}</p>
         <p>
-            <a href={project.url} target="_blank" rel="noopener noreferrer">
+            <a href={data.url} target="_blank">
                 Visit the project website
             </a>
         </p>
