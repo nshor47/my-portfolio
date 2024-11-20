@@ -3,20 +3,15 @@
     export let data = [];
     export let selectedIndex = -1;
 
-    // Set up colors
     let colors = d3.scaleOrdinal(d3.schemeTableau10);
 
-    // Arc and pie generators
     let sliceGenerator = d3.pie().value(d => d.value);
     let arcGenerator = d3.arc().innerRadius(0).outerRadius(50);
 
-    // Generate arc data
     $: arcData = sliceGenerator(data);
 
-    // Get the label of the selected year (if any)
     $: selectedYear = selectedIndex > -1 ? data[selectedIndex].label : null;
 
-    // Toggle function for slice selection
     function toggleWedge(index, event) {
         if (!event.key || event.key === 'Enter') {
             selectedIndex = selectedIndex === index ? -1 : index;
@@ -24,7 +19,6 @@
     }
 </script>
 
-<!-- SVG for the pie chart -->
 <div class="container">
     <svg viewBox="-50 -50 100 100">
         {#each arcData as arc, i}
@@ -41,7 +35,6 @@
         {/each}
     </svg>
 
-    <!-- Legend -->
     <ul class="legend">
         {#each data as d, index}
             <li 

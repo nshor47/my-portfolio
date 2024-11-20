@@ -18,10 +18,10 @@
         "description": "This exploratory visualization project took a deeper look into how internet usage has changed across different continents in the last two decades. "
     },
     {
-        "title": "Minima nam atque dignissimos.",
-        "year": "2023",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Obcaecati cum illum pariatur modi quas ut minus aliquid sequi inventore natus reprehenderit, qui, magnam eveniet? Ipsam natus odit quisquam enim dolorum, ducimus praesentium architecto, dolore sunt mollitia accusamus! Incidunt?"
+        "title": "Boston and Cambridge Interactive Bike Paths Map",
+        "year": "2024",
+        "image": "images/boston-cambridge-biking.png",
+        "description": "This project displays the bike routes and bike traffic flow at various stations within the Boston and Cambridge areas at different times of day."
     },
     {
         "title": "Eum delectus debitis ad?",
