@@ -7,6 +7,13 @@
         "url": "https://hluu01.github.io/DSC180A_B09_2/"
     },
     {
+        "title": "Boston and Cambridge Interactive Bike Paths Map",
+        "year": "2024",
+        "image": "images/boston-cambridge-biking.png",
+        "description": "This project displays the bike routes and bike traffic flow at various stations within the Boston and Cambridge areas at different times of day.",
+        "url": "https://nshor47.github.io/boston-biking-paths/"
+    },
+    {
         "title": "How Does Monthly Rainfall in San Diego Affect Traffic Injury Counts?",
         "year": "2024",
         "image": "images/SD_rainfall.png",
@@ -17,13 +24,6 @@
         "year": "2024",
         "image": "images/Continental_Internet_usage.png",
         "description": "This exploratory visualization project took a deeper look into how internet usage has changed across different continents in the last two decades. "
-    },
-    {
-        "title": "Boston and Cambridge Interactive Bike Paths Map",
-        "year": "2024",
-        "image": "images/boston-cambridge-biking.png",
-        "description": "This project displays the bike routes and bike traffic flow at various stations within the Boston and Cambridge areas at different times of day.",
-        "url": "https://nshor47.github.io/boston-biking-paths/"
     },
     {
         "title": "Eum delectus debitis ad?",
