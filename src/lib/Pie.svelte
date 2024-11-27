@@ -8,9 +8,18 @@
     let sliceGenerator = d3.pie().value(d => d.value);
     let arcGenerator = d3.arc().innerRadius(0).outerRadius(50);
 
-    $: arcData = sliceGenerator(data);
+    let pieData;
 
-    $: selectedYear = selectedIndex > -1 ? data[selectedIndex].label : null;
+    $: {
+        pieData = data.map((d) => ({ ...d }));
+
+        let arcData = sliceGenerator(pieData); 
+        let arcs = arcData.map(d => arcGenerator(d)); 
+
+        pieData = pieData.map((d, i) => ({ ...d, ...arcData[i], arc: arcs[i] }));
+    }
+
+    $: selectedYear = selectedIndex > -1 ? pieData[selectedIndex].label : null;
 
     function toggleWedge(index, event) {
         if (!event.key || event.key === 'Enter') {
@@ -21,13 +30,13 @@
 
 <div class="container">
     <svg viewBox="-50 -50 100 100">
-        {#each arcData as arc, i}
+        {#each pieData as d, i}
             <path
-                d={arcGenerator(arc)}
-                fill={colors(i)}
+                d={d.arc} 
+                fill={colors(d.label)} 
                 tabindex="0"
                 role="button"
-                aria-label="Select {data[i].label} slice"
+                aria-label="Select {d.label} slice"
                 class:selected={selectedIndex === i}
                 on:click={e => toggleWedge(i, e)}
                 on:keyup={e => toggleWedge(i, e)}
@@ -36,10 +45,10 @@
     </svg>
 
     <ul class="legend">
-        {#each data as d, index}
+        {#each pieData as d, index}
             <li 
                 class:selected={selectedIndex === index} 
-                style="--color: { colors(index) }"
+                style="--color: { colors(d.label) }"
             >
                 <span class="swatch"></span>
                 {d.label} <em>({d.value})</em>
