@@ -14,6 +14,20 @@
         "url": "https://nshor47.github.io/boston-biking-paths/"
     },
     {
+        "title": "Food Insecurity and Waste on a Global Scale",
+        "year": "2024",
+        "image": "images/food_waste.png",
+        "url": "https://yepzoey.github.io/global-food-insecurity-and-waste/",
+        "description": "Zoey Zhao and I created this project that takes a look at the global food insecurity and food waste problem, and how it has changed over the years. Visualizations are interactive and presented in an order to tell a story about this global issue."
+    },
+    {
+        "title": "Social Medias Impact on Mental Health and Focus in Youths and Adults",
+        "year": "2024",
+        "url": "https://github.com/nshor47/SocialMedia_MentalHealth/blob/main/DSC207R_Final_Project_Fall2024.ipynb",
+        "image": "images/health_sm.png",
+        "description": "This project took a deeper look at the correlation between varying social media usage and self-perceived levels of focus and health."
+    },
+    {
         "title": "How Does Monthly Rainfall in San Diego Affect Traffic Injury Counts?",
         "year": "2024",
         "image": "images/SD_rainfall.png",
@@ -24,18 +38,6 @@
         "year": "2024",
         "image": "images/Continental_Internet_usage.png",
         "description": "This exploratory visualization project took a deeper look into how internet usage has changed across different continents in the last two decades. "
-    },
-    {
-        "title": "Eum delectus debitis ad?",
-        "year": "2023",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Aliquam corporis ipsam nesciunt maxime praesentium. Laboriosam sunt, saepe omnis facilis quibusdam deserunt aperiam illum ratione rem eos libero porro obcaecati enim commodi culpa nam! Illum quia dolorum suscipit incidunt!"
-    },
-    {
-        "title": "Similique nam cum explicabo.",
-        "year": "2023",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Sit eius mollitia facere aut amet aliquid molestias asperiores illo eaque assumenda praesentium, neque suscipit rem similique ea doloribus iste commodi quae voluptates molestiae non recusandae magnam autem quod? Perferendis!"
     },
     {
         "title": "Eveniet nulla libero iusto.",
