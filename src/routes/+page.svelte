@@ -9,7 +9,7 @@
 </svelte:head>
 
 <h1>Nicholas Shor</h1>
-<p>I am a first year graduate student studying Data Science at UCSD. I love soccer and have played it my entire life.</p>
+<p>I am a motivated and accomplished individual with a strong foundation in data science, AI development, and analytical thinking. With a Bachelor’s degree in Data Science (GPA 3.74) and ongoing pursuit of a Master’s, I have honed my technical skills in AI, machine learning, and data analysis. My experience includes optimizing AI models, processing complex datasets, and collaborating on impactful projects. Additionally, my background as a D1 student-athlete has strengthened my dedication, teamwork, and leadership abilities. I am eager to apply my skills to tackle complex challenges and deliver meaningful solutions.</p>
 <img src="images/Me.jpg" alt="Picture of me"/>
 
 

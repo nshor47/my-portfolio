@@ -1,9 +1,9 @@
 [
     {
         "title": "UCSD Capstone Project: Generative AI for Good",
-        "year": "2024",
+        "year": "2023",
         "image": "images/DSC_capstone.png",
-        "description": "Data Science final project working under Dr . Ali Arsanjani, Director of Googles AI program. Working towards combining Predictive and Generative AI methods to analyze news articles and return truthfulness scores to better inform people of the reliability of news.",
+        "description": "Data Science final project working under Dr. Ali Arsanjani, Director of Googles AI program. Working towards combining Predictive and Generative AI methods to analyze news articles and return truthfulness scores to better inform people of the reliability of news.",
         "url": "https://hluu01.github.io/DSC180A_B09_2/"
     },
     {
@@ -38,41 +38,5 @@
         "year": "2024",
         "image": "images/Continental_Internet_usage.png",
         "description": "This exploratory visualization project took a deeper look into how internet usage has changed across different continents in the last two decades. "
-    },
-    {
-        "title": "Eveniet nulla libero iusto.",
-        "year": "2023",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Incidunt similique ullam enim necessitatibus distinctio velit quam, sint molestiae dicta temporibus error itaque blanditiis quas magnam. Enim voluptatibus quibusdam libero, tempora, omnis doloribus aut earum voluptatum esse rerum eius?"
-    },
-    {
-        "title": "Repellendus exercitationem dolor omnis.",
-        "year": "2022",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Molestiae, distinctio minima esse explicabo cupiditate molestias tempore nam pariatur deserunt aut a consequatur qui, inventore maiores fuga? Vitae sint quia animi eum laudantium suscipit sit reprehenderit cum officia omnis."
-    },
-    {
-        "title": "Est commodi debitis natus!",
-        "year": "2022",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Vero nihil obcaecati, mollitia adipisci suscipit nisi deserunt molestias hic minus provident dicta id esse doloremque eos! Quae quam, tempora impedit est, alias ad voluptate ullam dolorum tenetur, similique nihil!"
-    },
-    {
-        "title": "Incidunt delectus distinctio itaque.",
-        "year": "2022",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Nesciunt praesentium in ea officia reprehenderit exercitationem repellendus tenetur consequuntur nisi earum. Veritatis temporibus dolorem delectus ab ex corporis omnis fuga beatae, esse, sed dolore unde? Officiis repellendus velit odit."
-    },
-    {
-        "title": "Assumenda quam natus dolorum!",
-        "year": "2021",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Quia molestias id debitis, tempora magnam fugiat ex unde distinctio perferendis. Laudantium beatae in et aspernatur consequatur reprehenderit quae, eligendi aliquid quos tempore, quidem facere nobis non, explicabo inventore delectus."
-    },
-    {
-        "title": "Voluptatum autem culpa ratione.",
-        "year": "2020",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Magnam consequuntur consequatur laboriosam aspernatur. Expedita optio molestiae vitae aliquid, impedit corrupti quod fuga repudiandae animi ipsum ratione necessitatibus id sit laudantium accusamus asperiores eos rerum laborum, quam reiciendis earum."
     }
 ]
